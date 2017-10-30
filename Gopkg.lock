@@ -116,10 +116,10 @@
   version = "v1.0.0"
 
 [[projects]]
+  branch = "master"
   name = "github.com/spf13/viper"
   packages = ["."]
-  revision = "25b30aa063fc18e48662b86996252eabdcf2f0c7"
-  version = "v1.0.0"
+  revision = "d9cca5ef33035202efb1586825bdbb15ff9ec3ba"
 
 [[projects]]
   name = "github.com/uber/jaeger-client-go"
@@ -172,6 +172,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "f7345014cc6c517d93a753340fdbcbc5417f1012d576e7193d938ffc47bd8b37"
+  inputs-digest = "e264a9118faa0f91a9c6b34c05d2d99d2f366f9b179036e24708e9fa1abecd77"
   solver-name = "gps-cdcl"
   solver-version = 1

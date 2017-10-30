@@ -97,3 +97,7 @@
 [[constraint]]
   branch = "master"
   name = "google.golang.org/grpc"
+
+[[constraint]]
+  name = "github.com/opentracing/opentracing-go"
+  version = "1.0.2"
