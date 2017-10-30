@@ -11,6 +11,7 @@ variables:
   CONTAINER_RELEASE_IMAGE: $CI_REGISTRY_IMAGE:latest
   HUB_CONTAINER_TEST_IMAGE: $CI_PROJECT_PATH:$CI_BUILD_REF_NAME
   HUB_CONTAINER_RELEASE_IMAGE: $CI_PROJECT_PATH:latest
+  CC_TEST_REPORTER_ID: a80d306d25fa98782c166dd0e5a13bacd346114ad20e5409cff62dc25252342c
 
 services:
 - docker:dind
@@ -25,7 +26,8 @@ compile:
     - (! go fmt . ./cmd/... ./pkg/... 2>&1 | read) || echo "Some files need formatting. Failing."
     - protoc -I . ./pkg/proto/*.proto --go_out=plugins=grpc:.
     - dep ensure
-    - go test $(go list . ./cmd/... ./pkg/...) -timeout 5s
+    - cc-test-reporter before-build
+    - go test $(go list . ./cmd/... ./pkg/...) -timeout 5s; cc-test-reporter after-build --exit-code $?
     - golint $(go list . ./cmd/... ./pkg/... | grep -v proto)
     - CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o _output/${CI_PROJECT_NAME}
   artifacts:
